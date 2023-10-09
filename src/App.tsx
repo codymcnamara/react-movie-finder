@@ -1,17 +1,34 @@
 import './App.css'
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  HomeLayout,
+  About,
+  Landing,
+  Error,
+  Movie,
+} from './pages';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <h2>Movie Finder Home page</h2>
+    element: <HomeLayout/>,
+    errorElement: <Error/>,
+    children: [
+      {
+        index: true,
+        element: <Landing/>
+      },
+      {
+        path: '/movie',
+        element: <Movie/>
+      },
+      {
+        path: '/about',
+        element: <About/>
+      }
+    ]
   },
-  {
-    path: '/about',
-    element: (
-      <div><h2>Movie Finder About Page</h2></div>
-    )
-  }
+  
 ]);
 function App() {
   return (
