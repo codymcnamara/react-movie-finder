@@ -1,4 +1,5 @@
 import './App.css'
+import './bootstrap.scss';
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
   HomeLayout,
