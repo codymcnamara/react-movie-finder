@@ -5,7 +5,7 @@ import {
   HomeLayout,
   About,
   Landing,
-  Error,
+  ErrorPage,
   Movie,
 } from './pages';
 import { loader as landingLoader } from './components/MovieList'
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <HomeLayout/>,
-    errorElement: <Error/>,
+    errorElement: <ErrorPage/>,
     children: [
       {
         index: true,
