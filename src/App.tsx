@@ -8,6 +8,7 @@ import {
   Error,
   Movie,
 } from './pages';
+import { loader as landingLoader } from './components/MovieList'
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Landing/>
+        element: <Landing/>,
+        loader: landingLoader
       },
       {
         path: '/movie',
