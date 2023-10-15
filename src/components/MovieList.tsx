@@ -12,17 +12,25 @@ export const loader = async ()=> {
 
 const MovieList = () => {
     const movieData = useLoaderData() as Movie[];
+    const baseUrl = 'https://image.tmdb.org/t/p/w500/';
 
     const movieDivs: JSX.Element[] = movieData.map((movie: Movie)=>{
         return (
-            <div key={movie.id}>
-                <h4>{movie.title}</h4>
+            <div className="col">
+                <div className="card" key={movie.id}>
+                    <img src={baseUrl + movie.backdrop_path}className="card-img-top" alt="..."/>
+                    <div className="card-body">
+                        <h5 className="card-title">{movie.title}</h5>
+                        <p className="card-text">{movie.overview}</p>
+                        <a href="#" className="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
             </div>
         )
     })
 
     return (
-        <div>
+        <div className="row row-cols-1 row-cols-md-2 g-4">
             {movieDivs}
         </div>
     )
