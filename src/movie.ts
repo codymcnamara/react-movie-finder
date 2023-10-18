@@ -1,5 +1,5 @@
 export default interface Movie {
-    adult: Boolean,
+    adult: boolean,
     backdrop_path: string,
     genre_ids: number[],
     id: number,

@@ -9,7 +9,7 @@ import {
   Movie,
 } from './pages';
 import { loader as landingLoader } from './components/MovieList'
-
+import { loader as movieLoader } from './pages/Movie'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -22,8 +22,9 @@ const router = createBrowserRouter([
         loader: landingLoader
       },
       {
-        path: '/movie',
-        element: <Movie/>
+        path: '/movie/:id',
+        element: <Movie/>,
+        loader: movieLoader
       },
       {
         path: '/about',
