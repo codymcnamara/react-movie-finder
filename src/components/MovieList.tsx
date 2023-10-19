@@ -1,4 +1,4 @@
-import Movie from '../movie';
+import Movie from '../interfaces/movie';
 import { NavLink, useLoaderData } from "react-router-dom";
 
 const MovieList = () => {
