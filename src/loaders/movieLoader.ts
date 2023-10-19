@@ -13,5 +13,5 @@ export const loader = async ({ params }: {params: LoaderParams}) => {
     const data: MovieDetail = response.data;
     console.log(data);
 
-    return {id, movie: data};
+    return data;
 }

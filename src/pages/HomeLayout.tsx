@@ -3,9 +3,8 @@ import Navbar from '../components/Navbar';
 
 const HomeLayout = ()=> {
     return(
-        <div className="container-fluid">
+        <div className="container-xl px-4">
             <Navbar/>
-    
             <Outlet/>
         </div>
     )
