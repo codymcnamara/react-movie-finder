@@ -8,8 +8,8 @@ import {
   ErrorPage,
   Movie,
 } from './pages';
-import { loader as landingLoader } from './components/MovieList'
-import { loader as movieLoader } from './pages/Movie'
+import { loader as landingLoader } from './loaders/landingLoader'
+import { loader as movieLoader } from './loaders/movieLoader'
 const router = createBrowserRouter([
   {
     path: '/',
