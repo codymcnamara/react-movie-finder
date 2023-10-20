@@ -1,7 +1,8 @@
 import { useLoaderData } from 'react-router-dom';
 import MovieDetail from '../interfaces/MovieDetail'
 import MovieListItem from '../components/MovieListItem';
-  
+import { v4 as uuidv4 } from 'uuid';
+
 const Movie = ()=> {
     const movie = useLoaderData() as MovieDetail;
     const baseUrl = 'https://image.tmdb.org/t/p/original';
@@ -29,7 +30,7 @@ const Movie = ()=> {
                 <div className="col">
                     <ul className="list-group">
                         {listItemData.map((item)=>{
-                            return <MovieListItem {...item}/>
+                            return <MovieListItem {...item} key={uuidv4()}/>
                         })}
                     </ul> 
                 </div>
