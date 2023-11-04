@@ -10,6 +10,18 @@ import {
 } from './pages';
 import { loader as landingLoader } from './loaders/landingLoader'
 import { loader as movieLoader } from './loaders/movieLoader'
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -36,7 +48,10 @@ const router = createBrowserRouter([
 ]);
 function App() {
   return (
-    <RouterProvider router={router}/>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   )
 }
 
