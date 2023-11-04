@@ -1,3 +1,13 @@
 .wide-aspect-ratio {
     aspect-ratio: 16 / 9;
 }
+
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+
+    .form-label {
+        text-align: center;    
+    }
+}
