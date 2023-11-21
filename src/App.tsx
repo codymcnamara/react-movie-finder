@@ -8,7 +8,7 @@ import {
   ErrorPage,
   Movie,
 } from './pages';
-import { loader as landingLoader } from './loaders/landingLoader'
+import { loader as landingLoader } from './components/MovieList'
 import { loader as movieLoader } from './loaders/movieLoader'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
