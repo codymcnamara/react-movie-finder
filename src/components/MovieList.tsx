@@ -20,25 +20,23 @@ const searchMovieQuery = (searchTerm) => {
 
             return data.results;
         }
-    }
-        
+    }  
 }
 
-export const loader = async ({request}: {request: Request})=> {
-    const url = new URL(request.url);
-    const searchTerm = url.searchParams.get('search');
+export const loader = (queryClient)=> 
+    async ({request}: {request: Request})=> {
+        const url = new URL(request.url);
+        const searchTerm = url.searchParams.get('search');
 
-    return searchTerm
-}
+        await queryClient.ensureQueryData(searchMovieQuery(searchTerm));
+        return searchTerm
+    } 
 
 const MovieList = () => {
     const searchTerm = useLoaderData();
     const {data: movieData} = useQuery(searchMovieQuery(searchTerm));
     const baseUrl = 'https://image.tmdb.org/t/p/w500/';
 
-    if (!movieData){
-        return (<span>loading movies....</span>)
-    }
     const movieDivs: JSX.Element[] = movieData.map((movie: Movie)=>{
         const imgPath: string = movie.backdrop_path ? movie.backdrop_path : movie.poster_path;
 
