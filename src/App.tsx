@@ -8,8 +8,8 @@ import {
   ErrorPage,
   Movie,
 } from './pages';
-import { loader as landingLoader } from './components/MovieList'
-import { loader as movieLoader } from './loaders/movieLoader'
+import { loader as landingLoader } from './components/MovieList';
+import { loader as movieLoader } from './pages/Movie';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       {
         path: '/movie/:id',
         element: <Movie/>,
-        loader: movieLoader
+        loader: movieLoader(queryClient)
       },
       {
         path: '/about',

@@ -2,9 +2,43 @@ import { useLoaderData } from 'react-router-dom';
 import MovieDetail from '../interfaces/MovieDetail'
 import MovieListItem from '../components/MovieListItem';
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios'
+import { useQuery } from '@tanstack/react-query';
+
+type LoaderParams = {
+    id: string
+}
+
+const movieDetailQuery = (movieId: string) =>{
+    return {
+        queryKey: ['movie', movieId],
+        queryFn: async () => {
+            const detailPath: string = `https://api.themoviedb.org/3/movie/${movieId}?api_key=7b148caa8720b72c9e6ddf7882939bdc`;
+        
+            const response = await axios.get(detailPath);
+            const data: MovieDetail = response.data;
+            console.log(data);
+        
+            return data;
+        }
+    }
+}
+
+
+export const loader = (queryClient) => {
+    return (
+        async ({ params }: {params: LoaderParams}) => {
+            const { id } = params;
+            await queryClient.ensureQueryData(movieDetailQuery(id));
+            return id
+        }
+    )
+}
 
 const Movie = ()=> {
-    const movie = useLoaderData() as MovieDetail;
+    const id = useLoaderData();
+    const {data: movie} = useQuery(movieDetailQuery(id));
+
     const baseUrl = 'https://image.tmdb.org/t/p/original';
     const imgPath: string = movie.poster_path ? movie.poster_path : movie.backdrop_path;
     const listItemData: object[] = [
