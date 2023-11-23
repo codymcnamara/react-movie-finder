@@ -4,7 +4,13 @@ import MovieListItem from '../components/MovieListItem';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query';
+import { QueryClient } from '@tanstack/react-query';
 
+interface ListItemProps {
+    subHeading: string,
+    content: string,
+    key: string
+}
 type LoaderParams = {
     id: string
 }
@@ -25,7 +31,7 @@ const movieDetailQuery = (movieId: string) =>{
 }
 
 
-export const loader = (queryClient) => {
+export const loader = (queryClient: QueryClient) => {
     return (
         async ({ params }: {params: LoaderParams}) => {
             const { id } = params;
@@ -36,22 +42,25 @@ export const loader = (queryClient) => {
 }
 
 const Movie = ()=> {
-    const id = useLoaderData();
+    const id = useLoaderData() as string;
     const {data: movie} = useQuery(movieDetailQuery(id));
 
+    if (!movie){ 
+        return (<>no movie</>)
+    }
     const baseUrl = 'https://image.tmdb.org/t/p/original';
     const imgPath: string = movie.poster_path ? movie.poster_path : movie.backdrop_path;
-    const listItemData: object[] = [
-        {subHeading: 'Tagline', content: movie.tagline},
-        {subHeading: 'Genres', content: movie.genres.map( (genre) => genre.name ).join(', ')},
-        {subHeading: 'Overview', content: movie.overview},
-        {subHeading: 'Release Date', content: movie.release_date},
-        {subHeading: 'Budget', content: `$${movie.budget.toLocaleString()}`},
-        {subHeading: 'Revenue', content: `$${movie.revenue.toLocaleString()}`},
-        {subHeading: 'Runtime', content: `${movie.runtime} minutes`},
-        {subHeading: 'Vote Average', content: movie.vote_average},
-        {subHeading: 'Vote Count', content: movie.vote_count.toLocaleString()},
-        {subHeading: 'Popularity', content: movie.popularity},
+    const listItemData: ListItemProps[] = [
+        {subHeading: 'Tagline', content: movie.tagline, key: uuidv4()},
+        {subHeading: 'Genres', content: movie.genres.map( (genre) => genre.name ).join(', '), key: uuidv4()},
+        {subHeading: 'Overview', content: movie.overview, key: uuidv4()},
+        {subHeading: 'Release Date', content: movie.release_date, key: uuidv4()},
+        {subHeading: 'Budget', content: `$${movie.budget.toLocaleString()}`, key: uuidv4()},
+        {subHeading: 'Revenue', content: `$${movie.revenue.toLocaleString()}`, key: uuidv4()},
+        {subHeading: 'Runtime', content: `${movie.runtime} minutes`, key: uuidv4()},
+        {subHeading: 'Vote Average', content: movie.vote_average.toString(), key: uuidv4()},
+        {subHeading: 'Vote Count', content: movie.vote_count.toLocaleString(), key: uuidv4()},
+        {subHeading: 'Popularity', content: movie.popularity.toString(), key: uuidv4()},
     ];
 
     return (
@@ -64,7 +73,7 @@ const Movie = ()=> {
                 <div className="col">
                     <ul className="list-group">
                         {listItemData.map((item)=>{
-                            return <MovieListItem {...item} key={uuidv4()}/>
+                            return <MovieListItem {...item} />
                         })}
                     </ul> 
                 </div>

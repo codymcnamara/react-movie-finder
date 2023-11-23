@@ -2,12 +2,13 @@ import Movie from '../interfaces/movie';
 import { NavLink, useLoaderData } from "react-router-dom";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { QueryClient } from '@tanstack/react-query';
 
 type Request = {
     url: string
 }
 
-const searchMovieQuery = (searchTerm) => {
+const searchMovieQuery = (searchTerm: string | null) => {
     return {
         queryKey: ['search', searchTerm || 'popular' ],
         queryFn: async () => {
@@ -23,7 +24,7 @@ const searchMovieQuery = (searchTerm) => {
     }  
 }
 
-export const loader = (queryClient)=> 
+export const loader = (queryClient: QueryClient)=> 
     async ({request}: {request: Request})=> {
         const url = new URL(request.url);
         const searchTerm = url.searchParams.get('search');
@@ -33,7 +34,7 @@ export const loader = (queryClient)=>
     } 
 
 const MovieList = () => {
-    const searchTerm = useLoaderData();
+    const searchTerm = useLoaderData() as string | null;
     const {data: movieData} = useQuery(searchMovieQuery(searchTerm));
     const baseUrl = 'https://image.tmdb.org/t/p/w500/';
 

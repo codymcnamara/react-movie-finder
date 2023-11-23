@@ -1,6 +1,7 @@
 interface ListItemProps {
     subHeading: string,
-    content: string
+    content: string,
+    key: string
 }
 const MovieListItem:React.FC<ListItemProps> = ({subHeading, content}) => {
 

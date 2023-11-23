@@ -24,7 +24,7 @@ const queryClient = new QueryClient({
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: 'react-movie-finder/',
     element: <HomeLayout/>,
     errorElement: <ErrorPage/>,
     children: [
@@ -34,12 +34,12 @@ const router = createBrowserRouter([
         loader: landingLoader(queryClient)
       },
       {
-        path: '/movie/:id',
+        path: 'movie/:id',
         element: <Movie/>,
         loader: movieLoader(queryClient)
       },
       {
-        path: '/about',
+        path: 'about',
         element: <About/>
       }
     ]
