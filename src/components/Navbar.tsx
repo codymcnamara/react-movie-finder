@@ -11,7 +11,7 @@ const NavBar = ()=> {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
-                <NavLink to='/' className='navbar-brand'>
+                <NavLink to='/react-movie-finder/' className='navbar-brand'>
                     Movie Finder
                 </NavLink>
                 <button 
