@@ -1,21 +1,17 @@
-import { useLoaderData } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import MovieDetail from '../interfaces/MovieDetail'
 import MovieListItem from '../components/MovieListItem';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query';
-import { QueryClient } from '@tanstack/react-query';
 
 interface ListItemProps {
     subHeading: string,
     content: string,
     key: string
 }
-type LoaderParams = {
-    id: string
-}
 
-const movieDetailQuery = (movieId: string) =>{
+const movieDetailQuery = (movieId: string | undefined) =>{
     return {
         queryKey: ['movie', movieId],
         queryFn: async () => {
@@ -30,23 +26,13 @@ const movieDetailQuery = (movieId: string) =>{
     }
 }
 
-
-export const loader = (queryClient: QueryClient) => {
-    return (
-        async ({ params }: {params: LoaderParams}) => {
-            const { id } = params;
-            await queryClient.ensureQueryData(movieDetailQuery(id));
-            return id
-        }
-    )
-}
-
 const Movie = ()=> {
-    const id = useLoaderData() as string;
+    const { id } = useParams();
     const {data: movie} = useQuery(movieDetailQuery(id));
 
-    if (!movie){ 
-        return (<>no movie</>)
+    if (!movie) { 
+        console.log("'movie' is undefined")
+        return (<>Sorry there's been an error</>);
     }
     const baseUrl = 'https://image.tmdb.org/t/p/original';
     const imgPath: string = movie.poster_path ? movie.poster_path : movie.backdrop_path;
