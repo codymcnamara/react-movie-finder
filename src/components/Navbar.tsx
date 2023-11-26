@@ -29,10 +29,10 @@ const NavBar = ()=> {
                     id="navbarNavAltMarkup"
                 >
                     <div className="navbar-nav">
-                        <NavLink to='/' className='nav-link'  >
+                        <NavLink to='/react-movie-finder/' className='nav-link' >
                             Home
                         </NavLink>
-                        <NavLink to='/about' className='nav-link'>
+                        <NavLink to='/react-movie-finder/about' className='nav-link'>
                             About
                         </NavLink>
                     </div>
