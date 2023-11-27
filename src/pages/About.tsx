@@ -7,6 +7,7 @@ const About = ()=> {
             <ul>
                 <li>Uses temporary caching of API responses with React Query, resulting in a faster UI.</li>
                 <li>Connects to external TMDB API service to provide up to date movie information.</li>
+                <li>Uses React Router "loader" to fetch data before component renders.</li>
             </ul>
         </>
     )

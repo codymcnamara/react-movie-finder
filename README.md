@@ -9,3 +9,4 @@ Coding highlights:
 
 *   Uses temporary caching of API responses with React Query, resulting in a faster UI.
 *   Connects to external "TMDB" API service to provide up to date movie information.
+*   Uses React Router "loader" to fetch data before component renders.
