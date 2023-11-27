@@ -3,10 +3,13 @@ import Navbar from '../components/Navbar';
 
 const HomeLayout = ()=> {
     return(
-        <div className="container-xl px-4">
+        <>
             <Navbar/>
-            <Outlet/>
-        </div>
+            <div className="container-xl px-4">
+                <Outlet/>
+            </div>
+        </>
+
     )
 }
 export default HomeLayout;

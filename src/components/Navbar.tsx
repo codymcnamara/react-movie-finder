@@ -9,8 +9,8 @@ const NavBar = ()=> {
     }
 
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container-fluid">
+        <nav className="navbar navbar-expand-md bg-body-tertiary mb-5">
+            <div className="container-xl px-4">
                 <NavLink to='/react-movie-finder/' className='navbar-brand'>
                     Movie Finder
                 </NavLink>

@@ -1,7 +1,7 @@
 const About = ()=> {
     return (
         <>
-            <h1>About</h1>
+            <h1 className="about-title">About</h1>
             <p>This site is built with React, TypeScript, and React Query.</p>
             <p>Coding highlights:</p>
             <ul>
