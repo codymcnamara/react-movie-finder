@@ -1,15 +1,9 @@
 import { useParams } from 'react-router-dom';
 import MovieDetail from '../interfaces/MovieDetail'
-import MovieListItem from '../components/MovieListItem';
+import MovieListItem, { MovieListItemProps } from '../components/MovieListItem';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query';
-
-interface ListItemProps {
-    subHeading: string,
-    content: string,
-    key: string
-}
 
 const movieDetailQuery = (movieId: string | undefined) =>{
     return {
@@ -36,7 +30,7 @@ const Movie = ()=> {
     }
     const baseUrl = 'https://image.tmdb.org/t/p/original';
     const imgPath: string = movie.poster_path ? movie.poster_path : movie.backdrop_path;
-    const listItemData: ListItemProps[] = [
+    const listItemData: MovieListItemProps[] = [
         {subHeading: 'Tagline', content: movie.tagline, key: uuidv4()},
         {subHeading: 'Genres', content: movie.genres.map( (genre) => genre.name ).join(', '), key: uuidv4()},
         {subHeading: 'Overview', content: movie.overview, key: uuidv4()},

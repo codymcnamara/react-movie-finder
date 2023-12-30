@@ -2,7 +2,7 @@ const About = ()=> {
     return (
         <>
             <h1 className="about-title">About</h1>
-            <p>This site is built with React, TypeScript, and React Query.</p>
+            <p>This site is built with React, TypeScript, Bootstrap, Vite, and React Query.</p>
             <p>Coding highlights:</p>
             <ul>
                 <li>Uses temporary caching of API responses with React Query, resulting in a faster UI.</li>
